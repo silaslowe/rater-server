@@ -1,0 +1,15 @@
+[
+  {
+    "model": "raterapi.game",
+    "pk": 1,
+    "fields": {
+      "title": "Burger Time",
+      "description": "This is a game about it being time for burgers",
+      "gamer": 1,
+      "year": 2021,
+      "number_of _players": 4,
+      "play_time": 90,
+      "recommended_age": 4
+    }
+  }
+]

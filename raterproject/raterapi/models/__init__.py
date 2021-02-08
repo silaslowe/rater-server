@@ -4,4 +4,5 @@ from .category import Category
 from .gameCategory import GameCategory
 from .review import Review
 from .rating import Rating
+from .image import Image
 
