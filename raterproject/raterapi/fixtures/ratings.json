@@ -1,8 +1,8 @@
 [
   {
-    "model": "raterapi",
+    "model": "raterapi.rating",
     "pk": 1,
-    "field": {
+    "fields": {
       "game": 1,
       "rating": 6,
       "gamer": 1

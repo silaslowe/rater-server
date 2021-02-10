@@ -6,8 +6,8 @@
       "title": "Burger Time",
       "description": "This is a game about it being time for burgers",
       "gamer": 1,
-      "year": 2021,
-      "number_of _players": 4,
+      "release_year": 2021,
+      "number_of_players": 4,
       "play_time": 90,
       "recommended_age": 4
     }
