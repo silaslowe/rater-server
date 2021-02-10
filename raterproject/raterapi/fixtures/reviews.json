@@ -1,0 +1,11 @@
+[
+  {
+    "model": "raterapi.review",
+    "pk": 1,
+    "fields": {
+      "game": 1,
+      "gamer": 1,
+      "review": "The game was ok if you are 4 and like burger. I'm not and don't."
+    }
+  }
+]
