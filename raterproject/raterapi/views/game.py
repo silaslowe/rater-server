@@ -1,4 +1,5 @@
 """View module for handling requests about games"""
+from raterapi.models.gameCategory import GameCategory
 from django.core.exceptions import ValidationError
 from rest_framework import status
 from django.http import HttpResponseServerError
@@ -6,7 +7,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from raterapi.models import Game, Gamer
+from raterapi.models import Game, Gamer, Category
 
 class Games(ViewSet):
     """Level up games"""
@@ -28,6 +29,7 @@ class Games(ViewSet):
         game.number_of_players = request.data["number_of_players"]
         game.play_time = request.data["play_time"]
         game.recommended_age = request.data["recommended_age"]
+        game_category = GameCategory.objects.get(pk=request.data["game"])
         game.gamer = gamer
 
         try:
@@ -102,9 +104,26 @@ class Games(ViewSet):
 
         games = Game.objects.all()
 
+        game_objects = []
+        
         serializer = GameSerializer(
             games, many=True, context={'request': request})
-        return Response(serializer.data)
+
+        game_array = serializer.data
+        for od in game_array:
+            game_objects.append(dict(od))
+        for game in game_objects:
+           
+            category = Category.objects.filter(gamecategory__game=game["id"])
+            
+            categories = CategorySerializer(
+            category, many=True, context={'request': request}
+            )
+
+            game["categories"] = categories.data
+
+        print(serializer.data)    
+        return Response(game_objects)
 
 class GameSerializer(serializers.ModelSerializer):
     """JSON serializer for games
@@ -116,3 +135,13 @@ class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
         fields = ('id', 'title', 'description', 'designer', 'release_year', 'number_of_players', 'play_time', 'recommended_age', 'gamer')
+
+class CategorySerializer(serializers.ModelSerializer):
+    """JSON serializer for games
+
+    Arguments:
+        serializer type
+    """
+    class Meta:
+        model = Category
+        fields = ('id', 'category')

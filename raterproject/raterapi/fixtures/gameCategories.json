@@ -7,5 +7,23 @@
       "category": 1,
       "gamer": 1
     }
+  },
+  {
+    "model": "raterapi.gameCategory",
+    "pk": 2,
+    "fields": {
+      "game": 1,
+      "category": 3,
+      "gamer": 1
+    }
+  },
+  {
+    "model": "raterapi.gameCategory",
+    "pk": 3,
+    "fields": {
+      "game": 2,
+      "category": 1,
+      "gamer": 1
+    }
   }
 ]
